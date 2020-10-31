@@ -1,3 +1,32 @@
+
+class Node:
+    def __init__(self, value, next_node=None):
+        self.value = value
+        self.next = next_node
+
+    def get_val(self):
+        return self.value
+
+    def get_next_node(self):
+        return self.next_node 
+
+    def set_next_node(self, new_next):
+        self.next_node = new_next
+
+class Ll:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def add_to_tail(self, value):
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.set_next_node(new_node)
+            self.tail = new_node
+
 class HashTableEntry:
     """
     Linked List hash table key/value pair
@@ -10,7 +39,6 @@ class HashTableEntry:
 
 # Hash table can't have fewer than this many slots
 MIN_CAPACITY = 8
-
 
 class HashTable:
     """
@@ -93,7 +121,14 @@ class HashTable:
         """
         # Your code here
         index = self.hash_index(key)
-        self.arr[index] = value
+        if self.arr[index] is None:
+            new_list = Ll()
+            self.arr[index] = new_list
+            new_list.add_to_tail((key, value))
+            print(self.arr)
+        # else:
+        #     new_list.add_to_tail((key, value))
+        # self.arr[index] = value
 
         
     def delete(self, key):
