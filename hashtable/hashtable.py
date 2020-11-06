@@ -52,6 +52,7 @@ class HashTable:
         # Your code here
         self.capacity = capacity
         self.arr = [None] * capacity
+        self.load = 0
 
 
     def get_num_slots(self):
@@ -74,7 +75,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        return self.load / self.capacity
 
     def fnv1(self, key):
         """
@@ -101,7 +102,6 @@ class HashTable:
             hashed = hashed ^ ord(char)
         return hashed
 
-
     def hash_index(self, key):
         """
         Take an arbitrary key and return a valid integer index
@@ -121,16 +121,20 @@ class HashTable:
         """
         # Your code here
         index = self.hash_index(key)
-        if self.arr[index] is None:
-            new_list = Ll()
-            self.arr[index] = new_list
-            new_list.add_to_tail((key, value))
-            print(self.arr)
-        # else:
-        #     new_list.add_to_tail((key, value))
-        # self.arr[index] = value
+        self.arr[index] = value
 
-        
+        # if there's None, just make a node. That's the head
+        ## increment load by 1
+
+        # if there's already a node, iterate down and check keys
+        ## if you find the key, overwrite the value
+        # Don't increment the load
+        # stop looping and return 
+
+        ## if you reach the end, then add a node at the head or the tail
+        # increment the load by 1
+
+
     def delete(self, key):
         """
         Remove the value stored with the given key.
