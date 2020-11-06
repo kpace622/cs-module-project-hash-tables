@@ -1,7 +1,15 @@
 def word_count(s):
     # Your code here
+    dict = {}
 
-
+    string = s.split()
+    print(string)
+    for x in string:
+        x.lower()
+        if x.isalpha():
+            dict[x] = 1
+    
+    print("dict", dict)
 
 if __name__ == "__main__":
     print(word_count(""))
